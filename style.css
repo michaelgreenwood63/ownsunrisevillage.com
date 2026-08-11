@@ -320,7 +320,7 @@ a.stat:hover .stat-lbl{color:rgba(255,255,255,.4)}
 /* ── PHOTO HERO ── */
 .hero-photo{background:var(--red-dark);position:relative;padding:0}
 .hero-photo .hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(92,16,18,.82) 0%,rgba(140,26,28,.65) 100%);z-index:1}
-.hero-photo{background-image:url('/images/hero-sunrise.jpg');background-size:cover;background-position:center}
+.hero-photo{background-image:url('/images/plan-d-example.jpg');background-size:cover;background-position:center}
 .hero-content{position:relative;z-index:2;padding:100px 32px 110px;max-width:800px;margin:0 auto;text-align:center}
 .hero-photo .hero-eyebrow,.hero-photo h1,.hero-photo p{position:relative;z-index:2}
 .hero-photo .hero-divider{z-index:2}
