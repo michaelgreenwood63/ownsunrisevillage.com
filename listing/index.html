@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listing Details | OwnSunriseVillage</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+/* ── LISTING DETAIL PAGE ── */
+.ld-loading{min-height:60vh;display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--muted)}
+.ld-error{min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center}
+.ld-error h2{font-size:22px;color:var(--charcoal)}
+.ld-error p{color:var(--muted);font-size:14px}
+
+/* Gallery */
+.ld-gallery{background:#111;position:relative;height:480px;overflow:hidden}
+.ld-gallery-track{display:flex;height:100%;transition:transform .35s ease}
+.ld-gallery-slide{flex-shrink:0;width:100%;height:100%;background:center/cover no-repeat #111}
+.ld-gallery-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.55);border:none;color:#fff;width:48px;height:48px;border-radius:50%;font-size:22px;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.ld-gallery-btn:hover{background:rgba(0,0,0,.82)}
+.ld-gallery-prev{left:16px}
+.ld-gallery-next{right:16px}
+.ld-gallery-counter{position:absolute;bottom:16px;right:20px;background:rgba(0,0,0,.6);color:#fff;font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px}
+.ld-thumbs{display:flex;gap:6px;padding:10px 0;overflow-x:auto;scrollbar-width:thin;background:var(--off-white);border-bottom:1px solid var(--border)}
+.ld-thumbs::-webkit-scrollbar{height:4px}
+.ld-thumbs::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.ld-thumb{flex-shrink:0;width:88px;height:60px;background:center/cover no-repeat var(--light);border-radius:4px;cursor:pointer;border:2px solid transparent;opacity:.7;transition:opacity .15s,border-color .15s}
+.ld-thumb:first-child{margin-left:16px}
+.ld-thumb:last-child{margin-right:16px}
+.ld-thumb.active,.ld-thumb:hover{border-color:var(--red);opacity:1}
+
+/* Layout */
+.ld-wrap{max-width:1100px;margin:0 auto;padding:40px 24px 80px;display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:start}
+@media(max-width:800px){.ld-wrap{grid-template-columns:1fr;gap:32px}}
+
+/* Left column */
+.ld-breadcrumb{font-size:12px;color:var(--muted);margin-bottom:20px}
+.ld-breadcrumb a{color:var(--muted);text-decoration:none}
+.ld-breadcrumb a:hover{color:var(--red)}
+.ld-breadcrumb span{margin:0 6px}
+.ld-price{font-size:32px;font-weight:900;color:var(--red);letter-spacing:-.5px;margin-bottom:6px}
+.ld-address{font-size:20px;font-weight:800;color:var(--charcoal);margin-bottom:4px}
+.ld-location{font-size:13px;color:var(--muted);margin-bottom:6px}
+.ld-type-badge{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);background:var(--light);padding:4px 10px;border-radius:20px;margin-bottom:22px}
+.ld-chips{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.ld-chip{display:flex;align-items:center;gap:8px;background:var(--off-white);border:1.5px solid var(--border);border-radius:8px;padding:10px 16px}
+.ld-chip-icon{font-size:18px}
+.ld-chip-val{font-size:15px;font-weight:800;color:var(--charcoal)}
+.ld-chip-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted)}
+
+/* Facts table */
+.ld-section{margin-bottom:36px}
+.ld-section-title{font-size:16px;font-weight:900;color:var(--charcoal);margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.ld-facts{width:100%;border-collapse:collapse}
+.ld-facts tr{border-bottom:1px solid var(--border)}
+.ld-facts tr:last-child{border-bottom:none}
+.ld-facts td{padding:10px 0;font-size:13px;vertical-align:top}
+.ld-facts td:first-child{color:var(--muted);font-weight:600;width:50%;padding-right:12px}
+.ld-facts td:last-child{color:var(--charcoal);font-weight:700}
+.ld-desc{font-size:14px;line-height:1.9;color:var(--text)}
+.ld-desc-more{background:none;border:none;color:var(--red);font-weight:700;font-size:14px;cursor:pointer;padding:0;margin-top:8px;display:block;font-family:inherit}
+
+/* Right sidebar */
+.ld-sidebar{position:sticky;top:24px}
+.ld-contact-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden}
+.ld-contact-header{background:var(--red);padding:20px 24px}
+.ld-contact-header-title{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.7);margin-bottom:4px}
+.ld-contact-header-price{font-size:22px;font-weight:900;color:#fff}
+.ld-contact-header-addr{font-size:12px;color:rgba(255,255,255,.8);margin-top:2px}
+.ld-contact-body{padding:24px}
+.ld-agent-row{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.ld-agent-avatar{width:48px;height:48px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:var(--red);flex-shrink:0}
+.ld-agent-name{font-size:15px;font-weight:800;color:var(--charcoal)}
+.ld-agent-title{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.ld-contact-form .form-group{margin-bottom:12px}
+.ld-contact-form label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:5px}
+.ld-contact-form input,.ld-contact-form textarea{width:100%;border:1.5px solid var(--border);border-radius:6px;padding:10px 12px;font-size:13px;font-family:inherit;color:var(--text);background:var(--off-white)}
+.ld-contact-form input:focus,.ld-contact-form textarea:focus{outline:none;border-color:var(--red)}
+.ld-contact-form textarea{resize:vertical;min-height:80px}
+.ld-contact-submit{width:100%;background:var(--red);color:#fff;border:none;border-radius:6px;padding:13px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;text-transform:uppercase;letter-spacing:.4px;margin-top:4px}
+.ld-contact-submit:hover{background:var(--red-dark)}
+.ld-contact-links{display:flex;flex-direction:column;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+.ld-contact-link{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-size:13px;font-weight:600}
+.ld-contact-link:hover{color:var(--red)}
+.ld-mls-note{font-size:10px;color:var(--muted);line-height:1.6;margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+
+/* Homesafe callout in sidebar */
+.ld-homesafe-callout{background:var(--off-white);border-radius:var(--r);padding:18px;margin-top:16px;border:1.5px solid var(--border)}
+.ld-homesafe-title{font-size:11px;font-weight:800;color:var(--charcoal);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
+.ld-homesafe-desc{font-size:12px;color:var(--muted);line-height:1.65;margin:0 0 10px}
+.ld-homesafe-link{font-size:12px;font-weight:800;color:var(--red);text-decoration:none}
+.ld-homesafe-link:hover{text-decoration:underline}
+</style>
+<script src="/schema.js" defer></script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">OWN<span>SUNRISEVILLAGE</span></a>
+  <div class="nav-links">
+    <a href="/#about">About</a>
+    <a href="/#land-lease">Land Lease</a>
+    <a href="/#amenities">Amenities</a>
+    <a href="/#listings">Listings</a>
+    <a href="/team">Our Team</a>
+    <a href="/contact">Contact</a>
+    <a href="/homesafe">Homesafe</a>
+    <a href="/#seller" class="nav-cta">Free Valuation</a>
+  </div>
+  <div class="nav-hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="/#about" onclick="toggleMenu()">About</a>
+  <a href="/#land-lease" onclick="toggleMenu()">Land Lease</a>
+  <a href="/#amenities" onclick="toggleMenu()">Amenities</a>
+  <a href="/#listings" onclick="toggleMenu()">Listings</a>
+  <a href="/team" onclick="toggleMenu()">Our Team</a>
+  <a href="/contact" onclick="toggleMenu()">Contact</a>
+  <a href="/homesafe" onclick="toggleMenu()">Homesafe</a>
+  <a href="/#seller" onclick="toggleMenu()">Free Valuation</a>
+</div>
+
+<div id="ld-root">
+  <div class="ld-loading">Loading listing…</div>
+</div>
+
+<footer class="footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">OWN<span>SUNRISEVILLAGE</span></div>
+      <p class="footer-desc">Sunrise Village's dedicated real estate resource. Powered by <a href="https://www.markjontz.com" style="color:rgba(255,255,255,.6);text-decoration:none">Mark Jontz &amp; Associates</a> at Royal LePage Kelowna.</p>
+    </div>
+    <div>
+      <div class="footer-heading">On This Site</div>
+      <ul class="footer-links">
+        <li><a href="/#about">About Sunrise Village</a></li>
+        <li><a href="/#land-lease">Land Lease Explained</a></li>
+        <li><a href="/#amenities">Amenities</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Navigate</div>
+      <ul class="footer-links">
+        <li><a href="/#listings">All Listings</a></li>
+        <li><a href="/#solds">Recent Solds</a></li>
+        <li><a href="/homesafe">Homesafe Program</a></li>
+        <li><a href="/team">Our Team</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Contact</div>
+      <ul class="footer-links">
+        <li><a href="tel:12508616002">250-861-6002</a></li>
+        <li><a href="mailto:info@markjontz.com">info@markjontz.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Mark Jontz &amp; Associates | Royal LePage Kelowna. All rights reserved.</p>
+    <p style="margin-top:6px">The trademarks MLS®, Multiple Listing Service® and the associated logos are owned by The Canadian Real Estate Association (CREA) and identify the quality of services provided by real estate professionals who are members of CREA.</p>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  var m = document.getElementById('mobile-menu');
+  m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+}
+
+(function () {
+  var root = document.getElementById('ld-root');
+
+  function fmt(n) {
+    if (!n) return null;
+    return '$' + Number(n).toLocaleString('en-CA', { maximumFractionDigits: 0 });
+  }
+
+  function dom(dateStr) {
+    if (!dateStr) return null;
+    var d = Math.floor((Date.now() - new Date(dateStr).getTime()) / 86400000);
+    return d <= 0 ? 'Listed today' : d + ' days';
+  }
+
+  function esc(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function render(l) {
+    var photos = (l.Media || []).slice().sort(function(a,b){return(a.Order||0)-(b.Order||0);});
+    var unit   = l.UnitNumber ? 'Unit ' + l.UnitNumber + ' — ' : '';
+    var addr   = unit + (l.StreetNumber||'') + ' ' + (l.StreetName||'') + ' ' + (l.StreetSuffix||'');
+    var city   = [l.City, l.StateOrProvince, l.PostalCode].filter(Boolean).join(', ');
+
+    // Chips
+    var chips = '';
+    if (l.BedroomsTotal)         chips += chip('🛏', l.BedroomsTotal, 'Bedrooms');
+    if (l.BathroomsTotalInteger) chips += chip('🚿', l.BathroomsTotalInteger, 'Bathrooms');
+    if (l.ParkingTotal)          chips += chip('🚗', l.ParkingTotal, 'Parking');
+    if (l.LivingArea)            chips += chip('📐', Math.round(l.LivingArea).toLocaleString() + ' ft²', 'Living Area');
+
+    // Facts rows
+    var facts = [];
+    if (l.PropertySubType || l.StructureType) facts.push(['Property Type', l.PropertySubType || l.StructureType]);
+    if (l.LivingArea)             facts.push(['Size', Math.round(l.LivingArea).toLocaleString() + ' sq ft']);
+    if (l.YearBuilt)              facts.push(['Year Built', l.YearBuilt]);
+    if (l.Stories)                facts.push(['Stories', l.Stories]);
+    if (l.ParkingTotal)           facts.push(['Parking', l.ParkingTotal + (l.ParkingFeatures ? ' — ' + l.ParkingFeatures : '')]);
+    if (l.Basement)               facts.push(['Basement', l.Basement]);
+    if (l.Heating)                facts.push(['Heating', l.Heating]);
+    if (l.Cooling)                facts.push(['Cooling', l.Cooling]);
+    if (l.FireplaceYN)            facts.push(['Fireplace', l.FireplacesTotal ? l.FireplacesTotal : 'Yes']);
+    if (l.AssociationFee)         facts.push(['Maintenance Fee', fmt(l.AssociationFee) + (l.AssociationFeeFrequency ? ' / ' + l.AssociationFeeFrequency.toLowerCase() : '/mo')]);
+    if (l.AssociationFeeIncludes) facts.push(['Fee Includes', l.AssociationFeeIncludes]);
+    if (l.TaxAnnualAmount)        facts.push(['Annual Taxes', fmt(l.TaxAnnualAmount) + (l.TaxYear ? ' (' + l.TaxYear + ')' : '')]);
+    if (l.ListingId)              facts.push(['MLS® Number', l.ListingId]);
+    facts.push(['Listed', dom(l.OriginalEntryTimestamp) ? dom(l.OriginalEntryTimestamp) + ' ago' : '—']);
+    if (l.ListOfficeName)         facts.push(['Listing Office', l.ListOfficeName]);
+
+    var factsHtml = facts.map(function(r){
+      return '<tr><td>' + esc(r[0]) + '</td><td>' + esc(String(r[1])) + '</td></tr>';
+    }).join('');
+
+    // Description
+    var desc = l.PublicRemarks || '';
+    var descHtml = '';
+    if (desc) {
+      if (desc.length > 320) {
+        descHtml = '<p class="ld-desc" id="ld-desc-short">' + esc(desc.slice(0, 320)) + '… <button class="ld-desc-more" onclick="expandDesc()">Read more</button></p>' +
+                   '<p class="ld-desc" id="ld-desc-full" style="display:none">' + esc(desc) + ' <button class="ld-desc-more" onclick="collapseDesc()">Show less</button></p>';
+      } else {
+        descHtml = '<p class="ld-desc">' + esc(desc) + '</p>';
+      }
+    }
+
+    // Thumbnails
+    var thumbsHtml = photos.length > 1 ? '<div class="ld-thumbs" id="ld-thumbs">' +
+      photos.map(function(p, i){
+        return '<div class="ld-thumb' + (i===0?' active':'') + '" style="background-image:url(\'' + esc(p.MediaURL||'') + '\')" data-idx="' + i + '" onclick="goSlide(' + i + ')"></div>';
+      }).join('') + '</div>' : '';
+
+    // Gallery slides
+    var slidesHtml = photos.length
+      ? photos.map(function(p){ return '<div class="ld-gallery-slide" style="background-image:url(\'' + esc(p.MediaURL||'') + '\')"></div>'; }).join('')
+      : '<div class="ld-gallery-slide" style="background:#222;display:flex;align-items:center;justify-content:center"><span style="color:rgba(255,255,255,.3);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px">No Photos Available</span></div>';
+
+    var breadcrumb = '<div class="ld-breadcrumb"><a href="/">Sunrise Village</a><span>/</span> ' + esc(addr.trim()) + '</div>';
+
+    root.innerHTML =
+      '<div class="ld-gallery">' +
+        '<div class="ld-gallery-track" id="ld-track">' + slidesHtml + '</div>' +
+        (photos.length > 1 ? '<button class="ld-gallery-btn ld-gallery-prev" onclick="goSlide(window._ldIdx-1)">&#8592;</button>' +
+          '<button class="ld-gallery-btn ld-gallery-next" onclick="goSlide(window._ldIdx+1)">&#8594;</button>' +
+          '<div class="ld-gallery-counter" id="ld-counter">1 / ' + photos.length + '</div>' : '') +
+      '</div>' +
+      thumbsHtml +
+      '<div class="ld-wrap">' +
+        '<div class="ld-main">' +
+          breadcrumb +
+          '<div class="ld-price">' + (fmt(l.ListPrice) || 'Price on Request') + '</div>' +
+          '<div class="ld-address">' + esc(addr.trim()) + '</div>' +
+          '<div class="ld-location">' + esc(city) + '</div>' +
+          ((l.PropertySubType||l.StructureType) ? '<div class="ld-type-badge">' + esc(l.PropertySubType||l.StructureType) + '</div>' : '') +
+          (chips ? '<div class="ld-chips">' + chips + '</div>' : '') +
+          (desc ? '<div class="ld-section"><div class="ld-section-title">Description</div>' + descHtml + '</div>' : '') +
+          '<div class="ld-section"><div class="ld-section-title">Property Details</div><table class="ld-facts"><tbody>' + factsHtml + '</tbody></table></div>' +
+        '</div>' +
+        '<div class="ld-sidebar">' +
+          '<div class="ld-contact-card">' +
+            '<div class="ld-contact-header">' +
+              '<div class="ld-contact-header-title">Listed at</div>' +
+              '<div class="ld-contact-header-price">' + (fmt(l.ListPrice)||'Contact for price') + '</div>' +
+              '<div class="ld-contact-header-addr">' + esc(addr.trim()) + '</div>' +
+            '</div>' +
+            '<div class="ld-contact-body">' +
+              '<div class="ld-agent-row">' +
+                '<div class="ld-agent-avatar">MJ</div>' +
+                '<div><div class="ld-agent-name">Mark Jontz</div><div class="ld-agent-title">REALTOR® · Royal LePage Kelowna</div></div>' +
+              '</div>' +
+              '<div class="ld-form-success" id="ld-form-success" style="display:none;margin-bottom:12px;padding:12px;background:rgba(26,122,74,.12);border:1px solid rgba(26,122,74,.3);border-radius:6px;color:#1a7a4a;font-weight:700;font-size:13px;text-align:center">\u2713 Sent \u2014 we\'ll be in touch shortly.</div>' +
+              '<form class="ld-contact-form" action="https://formspree.io/f/FORMSPREE_ID_HERE" method="POST">' +
+              '<input type="hidden" name="_next" value="https://ownsunrisevillage.com/listing?id=' + encodeURIComponent(key) + '&sent=1">' +
+                '<input type="hidden" name="_subject" value="Listing Inquiry — ' + esc(addr.trim()) + '">' +
+                '<input type="hidden" name="listing" value="' + esc(addr.trim()) + ' · MLS® ' + esc(l.ListingId||'') + '">' +
+                '<div class="form-group"><label>Name</label><input type="text" name="name" placeholder="Your name" required></div>' +
+                '<div class="form-group"><label>Email</label><input type="email" name="email" placeholder="you@email.com" required></div>' +
+                '<div class="form-group"><label>Phone</label><input type="tel" name="phone" placeholder="250-555-0100"></div>' +
+                '<div class="form-group"><label>Message</label><textarea name="message" rows="3" placeholder="I\'d like more info about this property…"></textarea></div>' +
+                '<button type="submit" class="ld-contact-submit">Request Info →</button>' +
+              '</form>' +
+              '<div class="ld-contact-links">' +
+                '<a href="tel:12508616002" class="ld-contact-link"><span>📞</span><span>250-861-6002</span></a>' +
+                '<a href="mailto:info@markjontz.com" class="ld-contact-link"><span>✉️</span><span>info@markjontz.com</span></a>' +
+              '</div>' +
+              '<div class="ld-homesafe-callout">' +'<div class="ld-homesafe-title">Need to sell first?</div>' +'<p class="ld-homesafe-desc">Homesafe lets you buy your next home before your current one sells — one move, same day close.</p>' +'<a href="/homesafe" class="ld-homesafe-link">Learn about Homesafe →</a>' +'</div>' +
+              '<div class="ld-mls-note">' +
+                (l.ListOfficeName ? 'Listing courtesy of ' + esc(l.ListOfficeName) + '. ' : '') +
+                'MLS® data provided by CREA DDF®. The trademarks REALTOR®, MLS®, and REALTORS® are controlled by CREA.' +
+                (l.ListingURL ? ' <a href="' + esc(l.ListingURL) + '" target="_blank" rel="noopener" style="color:var(--red)">View on realtor.ca →</a>' : '') +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+
+    window._ldPhotos = photos;
+    window._ldIdx    = 0;
+    if (location.search.indexOf('sent=1') !== -1) {
+      var successEl = document.getElementById('ld-form-success');
+      if (successEl) { successEl.style.display = 'block'; successEl.scrollIntoView({behavior:'smooth', block:'center'}); }
+    }
+  }
+
+  function chip(icon, val, lbl) {
+    return '<div class="ld-chip"><div class="ld-chip-icon">' + icon + '</div><div><div class="ld-chip-val">' + esc(String(val)) + '</div><div class="ld-chip-lbl">' + lbl + '</div></div></div>';
+  }
+
+  window.goSlide = function(idx) {
+    var photos = window._ldPhotos || [];
+    if (!photos.length) return;
+    idx = ((idx % photos.length) + photos.length) % photos.length;
+    window._ldIdx = idx;
+    var track = document.getElementById('ld-track');
+    if (track) track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    var counter = document.getElementById('ld-counter');
+    if (counter) counter.textContent = (idx + 1) + ' / ' + photos.length;
+    document.querySelectorAll('.ld-thumb').forEach(function(t, i){ t.classList.toggle('active', i === idx); });
+  };
+
+  window.expandDesc   = function(){ document.getElementById('ld-desc-short').style.display='none'; document.getElementById('ld-desc-full').style.display=''; };
+  window.collapseDesc = function(){ document.getElementById('ld-desc-full').style.display='none'; document.getElementById('ld-desc-short').style.display=''; };
+
+  var params = new URLSearchParams(window.location.search);
+  var key    = params.get('id');
+
+  if (!key) {
+    root.innerHTML = '<div class="ld-error"><h2>No listing specified</h2><p><a href="/" style="color:var(--red)">← Back to Sunrise Village listings</a></p></div>';
+    return;
+  }
+
+  fetch('/api/listing?key=' + encodeURIComponent(key))
+    .then(function(r){ return r.json(); })
+    .then(function(data) {
+      if (!data.configured) {
+        root.innerHTML = '<div class="ld-error"><h2>Listings unavailable</h2><p><a href="/contact" style="color:var(--red)">Contact us directly →</a></p></div>';
+        return;
+      }
+      if (data.error || !data.listing) {
+        root.innerHTML = '<div class="ld-error"><h2>Listing not found</h2><p>It may have sold or been removed.</p><p><a href="/" style="color:var(--red)">← Browse all Sunrise Village listings</a></p></div>';
+        return;
+      }
+      var l = data.listing;
+      var titleAddr = (l.UnitNumber ? 'Unit ' + l.UnitNumber + ' — ' : '') + (l.StreetNumber||'') + ' ' + (l.StreetName||'') + ' ' + (l.StreetSuffix||'');
+      document.title = titleAddr.trim() + ' | OwnSunriseVillage';
+      render(l);
+    })
+    .catch(function(){
+      root.innerHTML = '<div class="ld-error"><h2>Something went wrong</h2><p><a href="/contact" style="color:var(--red)">Contact us directly →</a></p></div>';
+    });
+})();
+</script>
+</body>
+</html>
