@@ -91,9 +91,12 @@
   }
 
   var PAGES = {
-    '/team':     'Our Team',
-    '/contact':  'Contact',
-    '/homesafe': 'Homesafe Program'
+    '/team':       'Our Team',
+    '/contact':    'Contact',
+    '/homesafe':   'Homesafe Program',
+    '/clubhouse':  'Clubhouse',
+    '/location':   'Location',
+    '/rules-regs': 'Rules & Regulations'
   };
 
   if (PAGES[path]) {
