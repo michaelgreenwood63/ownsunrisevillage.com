@@ -29,27 +29,35 @@
 <nav>
   <a href="/" class="nav-logo">OWN<span>SUNRISEVILLAGE</span></a>
   <div class="nav-links">
-    <a href="/#about">About</a>
-    <a href="/#land-lease">Land Lease</a>
-    <a href="/clubhouse">Clubhouse</a>
-    <a href="/location" class="active">Location</a>
-    <a href="/rules-regs">Rules &amp; Regs</a>
+    <div class="nav-dropdown">
+      <a href="/#about" class="active">About Sunrise Village</a>
+      <div class="nav-dropdown-menu">
+        <a href="/#about">About the Community</a>
+        <a href="/#land-lease">Land Lease</a>
+        <a href="/clubhouse">Clubhouse</a>
+        <a href="/location" class="active">Location</a>
+        <a href="/rules-regs">Rules &amp; Regs</a>
+        <a href="/homesafe">Homesafe</a>
+      </div>
+    </div>
     <a href="/#listings">Listings</a>
+    <a href="/team">Our Team</a>
     <a href="/contact">Contact</a>
     <a href="/#seller" class="nav-cta">Free Valuation</a>
   </div>
   <div class="nav-hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
-  <a href="/#about" onclick="toggleMenu()">About</a>
+  <div class="mobile-menu-label">About Sunrise Village</div>
+  <a href="/#about" onclick="toggleMenu()">About the Community</a>
   <a href="/#land-lease" onclick="toggleMenu()">Land Lease</a>
   <a href="/clubhouse" onclick="toggleMenu()">Clubhouse</a>
   <a href="/location" onclick="toggleMenu()">Location</a>
   <a href="/rules-regs" onclick="toggleMenu()">Rules &amp; Regs</a>
+  <a href="/homesafe" onclick="toggleMenu()">Homesafe</a>
   <a href="/#listings" onclick="toggleMenu()">Listings</a>
   <a href="/team" onclick="toggleMenu()">Our Team</a>
   <a href="/contact" onclick="toggleMenu()">Contact</a>
-  <a href="/homesafe" onclick="toggleMenu()">Homesafe</a>
   <a href="/#seller" onclick="toggleMenu()">Free Valuation</a>
 </div>
 

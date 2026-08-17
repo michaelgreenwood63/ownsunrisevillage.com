@@ -26,6 +26,17 @@ nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px 
 .nav-links{display:flex;align-items:center;gap:28px}
 .nav-links a{text-decoration:none;color:var(--muted);font-size:13px;font-weight:600;letter-spacing:.2px;transition:color .2s;text-transform:uppercase}
 .nav-links a:hover,.nav-links a.active{color:var(--red)}
+.nav-dropdown{position:relative}
+.nav-dropdown>a{display:flex;align-items:center;gap:5px;cursor:pointer}
+.nav-dropdown>a::after{content:'';width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-top:-3px;transition:transform .2s}
+.nav-dropdown:hover>a::after,.nav-dropdown:focus-within>a::after{transform:rotate(225deg);margin-top:3px}
+.nav-dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(4px);background:var(--white);border:1px solid var(--border);border-radius:8px;box-shadow:0 14px 36px rgba(0,0,0,.14);padding:8px;min-width:230px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .15s,transform .15s;z-index:110}
+.nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown:focus-within .nav-dropdown-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-dropdown-menu a{display:block;padding:10px 12px;border-radius:5px;font-size:13px;font-weight:600;color:var(--text);text-transform:none;letter-spacing:0}
+.nav-dropdown-menu a:hover{background:var(--off-white);color:var(--red)}
+.nav-dropdown-menu a.active{color:var(--red);background:rgba(140,26,28,.06)}
+.mobile-menu-label{padding:14px 0 4px;color:var(--muted);font-weight:800;font-size:10.5px;text-transform:uppercase;letter-spacing:1.2px}
+.mobile-menu-label:first-child{padding-top:0}
 .nav-cta{background:var(--red)!important;color:var(--white)!important;padding:10px 22px;border-radius:4px;font-size:12px!important;font-weight:700!important;letter-spacing:.5px!important;transition:background .2s!important;text-transform:uppercase!important}
 .nav-cta:hover{background:var(--red-dark)!important}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
