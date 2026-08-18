@@ -96,7 +96,8 @@
     '/homesafe':   'Homesafe Program',
     '/clubhouse':  'Clubhouse',
     '/location':   'Location',
-    '/rules-regs': 'Rules & Regulations'
+    '/rules-regs': 'Rules & Regulations',
+    '/blog':       'Blog'
   };
 
   if (PAGES[path]) {
