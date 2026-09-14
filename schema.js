@@ -91,7 +91,15 @@
           'name': 'What amenities does Sunrise Village have?',
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': 'Sunrise Village\'s clubhouse includes a heated outdoor pool, hot tub, fitness room, library, and billiards room with common space. The community is centrally located in Springfield/Spall, close to shopping, dining, medical services, and the Mission Creek Greenway.'
+            'text': 'Sunrise Village\'s clubhouse includes a heated outdoor pool, hot tub, fitness room, library, billiards room, and a shared greenhouse available to all residents. The community is centrally located in Springfield/Spall, close to shopping, dining, medical services, and the Mission Creek Greenway.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Can I install solar panels at Sunrise Village?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes — rooftop solar is permitted with written approval from Sunrise Village management and a licensed installer. Ground-mounted solar systems are not permitted.'
           }
         }
       ]
