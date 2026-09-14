@@ -67,7 +67,7 @@
           'name': 'What does "land lease" mean at Sunrise Village?',
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': 'At Sunrise Village, buyers own their home outright but lease the land it sits on, under a lease governed by BC\'s Manufactured Home Park Tenancy Act. This typically means a lower purchase price than an equivalent fee-simple property, along with a separate monthly land lease fee on top of the community\'s HOA fee.'
+            'text': 'At Sunrise Village, buyers own their home outright but lease the land it sits on, under a lease governed by BC\'s Manufactured Home Park Tenancy Act. The land is 100% privately owned, with no strata corporation or HOA involved. This typically means a lower purchase price than an equivalent fee-simple property, with one monthly land lease payment as the only recurring community charge.'
           }
         },
         {
@@ -75,7 +75,15 @@
           'name': 'Do I need to be 45 to buy at Sunrise Village?',
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': 'Yes — Sunrise Village is an age-restricted 45+ community, and the age requirement applies to the primary resident(s) on title.'
+            'text': 'Yes — Sunrise Village enforces a strict minimum age of 45 for residents, with no exceptions. Because it is a private leasehold community rather than a strata, the age restriction is strictly enforced as part of every purchase.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Do I need approval to buy a home at Sunrise Village?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes — every offer at Sunrise Village is written subject to the buyer securing park approval from Sunrise Village management before the offer is finalized, which includes reviewing and signing the community\'s Rules & Regulations.'
           }
         },
         {
