@@ -67,7 +67,7 @@
           'name': 'What does "land lease" mean at Sunrise Village?',
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': 'At Sunrise Village, buyers own their home outright but lease the land it sits on, under a lease governed by BC\'s Manufactured Home Park Tenancy Act. This typically means a lower purchase price than an equivalent fee-simple property, along with a separate monthly land lease fee on top of any strata fee.'
+            'text': 'At Sunrise Village, buyers own their home outright but lease the land it sits on, under a lease governed by BC\'s Manufactured Home Park Tenancy Act. This typically means a lower purchase price than an equivalent fee-simple property, along with a separate monthly land lease fee on top of the community\'s HOA fee.'
           }
         },
         {
