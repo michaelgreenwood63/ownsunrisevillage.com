@@ -351,6 +351,53 @@
   </div>
 </div>
 
+<!-- BUYER CHECKLIST LEAD MAGNET -->
+<div id="checklist" class="section section-alt">
+  <div class="section-inner" style="max-width:760px">
+    <div class="section-label">Free Download</div>
+    <h2 class="section-title">The Sunrise Village Buyer's Checklist</h2>
+    <p class="section-sub">Twelve specific things to confirm before you write an offer — sourced from the community's actual Rules &amp; Regulations and land lease process, not generic advice. Here's a preview:</p>
+
+    <ul style="margin:24px 0 0;padding:0;list-style:none;max-width:640px">
+      <li style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text)"><span style="color:var(--red);font-weight:800">1.</span> Confirm the current monthly land-lease payment for this specific unit — it varies by lot.</li>
+      <li style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text)"><span style="color:var(--red);font-weight:800">2.</span> Confirm the lease's remaining term and when it was last renewed.</li>
+      <li style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text)"><span style="color:var(--red);font-weight:800">3.</span> Book your park approval appointment early — it's a subject condition on every offer.</li>
+    </ul>
+
+    <div style="margin-top:28px;background:var(--white);border:1.5px solid var(--border);border-top:3px solid var(--red);border-radius:var(--r);padding:28px;max-width:520px">
+      <div id="checklist-form-wrap">
+        <p style="font-size:14px;font-weight:700;color:var(--charcoal);margin-bottom:14px">Get all 12 points, free — enter your email and the full checklist unlocks below.</p>
+        <div data-fs-error class="lead-form-error" style="color:#b91c1c;background:rgba(220,38,38,.08)">Something went wrong. Please call us at <a href="tel:12508616002">250-861-6002</a>.</div>
+        <form id="checklist-form" style="display:flex;gap:10px;flex-wrap:wrap">
+          <input type="hidden" name="form_source" value="ownsunrisevillage.com — buyer checklist download">
+          <input type="hidden" name="_subject" value="Buyer Checklist Download — OwnSunriseVillage">
+          <input type="email" name="email" placeholder="you@email.com" required data-fs-field style="flex:1;min-width:200px;border:1.5px solid var(--border);border-radius:6px;padding:12px 14px;font-size:14px;font-family:inherit;color:var(--text)">
+          <button type="submit" class="btn-red" data-fs-submit-btn style="white-space:nowrap;border:none;cursor:pointer">Unlock Checklist →</button>
+        </form>
+      </div>
+
+      <div data-fs-success style="display:none">
+        <p style="font-size:13px;font-weight:800;color:#1a7a4a;text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px">✓ Unlocked — here's the full checklist</p>
+        <ol style="margin:0;padding-left:20px;font-size:14px;color:var(--text);line-height:1.9">
+          <li>Confirm the current monthly land-lease payment for this specific unit — it varies by lot.</li>
+          <li>Confirm the lease's remaining term and when it was last renewed.</li>
+          <li>Confirm when the lease payment was last increased, and by how much.</li>
+          <li>Request the current, complete Rules &amp; Regulations document — not a summary.</li>
+          <li>Confirm construction type (manufactured, modular, or stick-built) and CSA sticker status.</li>
+          <li>Ask whether the City of Kelowna has inspected this specific phase.</li>
+          <li>Book your park approval appointment as early as possible — it's a subject condition on every offer.</li>
+          <li>If you have a pet, confirm approval in advance — one pet, subject to management's sign-off.</li>
+          <li>Ask about any outstanding Renovation Request approvals or pending work on file for the home.</li>
+          <li>Confirm RV storage availability and the separate monthly fee, if you need it.</li>
+          <li>Confirm the $100 lease transfer fee and who pays it (the seller, per the resale policy).</li>
+          <li>Have a real estate lawyer review the actual lease terms before you remove subjects.</li>
+        </ol>
+        <p style="font-size:13px;color:var(--muted);margin-top:16px">We'll also follow up directly in case you have questions about a specific home.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- FAQ -->
 <div class="section">
   <div class="section-inner" style="max-width:760px">
@@ -542,6 +589,15 @@ function toggleFAQ(btn){
 window.formspree = window.formspree || function(){ (formspree.q = formspree.q || []).push(arguments); };
 formspree('initForm', { formElement: '#seller-form', formId: 'mvkojlee' });
 formspree('initForm', { formElement: '#buyer-form',  formId: 'mvkojlee' });
+formspree('initForm', { formElement: '#checklist-form', formId: 'mvkojlee' });
+(function(){
+  var successEl = document.querySelector('#checklist [data-fs-success]');
+  var formWrap = document.getElementById('checklist-form-wrap');
+  if (!successEl || !formWrap) return;
+  new MutationObserver(function(){
+    if (getComputedStyle(successEl).display !== 'none') formWrap.style.display = 'none';
+  }).observe(successEl, { attributes: true, attributeFilter: ['style', 'class'] });
+})();
 </script>
 <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
