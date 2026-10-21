@@ -19,7 +19,7 @@
         'url': BASE,
         'telephone': '+12508616002',
         'email': 'info@markjontz.com',
-        'description': 'Mark Jontz & Associates — the dedicated real estate resource for Sunrise Village, a 45+ land-lease community of an estimated 350+ homes at 1255 and 1260 Raymer Avenue, Kelowna. 50+ transactions facilitated inside the community.',
+        'description': 'Mark Jontz & Associates: the dedicated real estate resource for Sunrise Village, a 45+ land-lease community of an estimated 350+ homes at 1255 and 1260 Raymer Avenue, Kelowna. 50+ transactions facilitated inside the community.',
         'areaServed': [
           { '@type': 'City', 'name': 'Kelowna', 'addressRegion': 'BC', 'addressCountry': 'CA' },
           { '@type': 'Place', 'name': 'Sunrise Village, Raymer Avenue, Kelowna', 'addressRegion': 'BC', 'addressCountry': 'CA' }
@@ -47,7 +47,7 @@
       '@type': 'WebSite',
       'url': BASE,
       'name': 'Own Sunrise Village',
-      'description': 'Sunrise Village Kelowna real estate — a 45+ land-lease community of an estimated 350+ homes on Raymer Avenue. Browse active listings with Mark Jontz & Associates.'
+      'description': 'Sunrise Village Kelowna real estate: a 45+ land-lease community of an estimated 350+ homes on Raymer Avenue. Browse active listings with Mark Jontz & Associates.'
     });
 
     inject({
@@ -75,7 +75,7 @@
           'name': 'Do I need to be 45 to buy at Sunrise Village?',
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': 'Yes — Sunrise Village enforces a strict minimum age of 45 for residents, with no exceptions. Because it is a private leasehold community rather than a strata, the age restriction is strictly enforced as part of every purchase.'
+            'text': 'Yes. Sunrise Village enforces a strict minimum age of 45 for residents, with no exceptions. Because it is a private leasehold community rather than a strata, the age restriction is strictly enforced as part of every purchase.'
           }
         },
         {
@@ -83,7 +83,7 @@
           'name': 'Do I need approval to buy a home at Sunrise Village?',
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': 'Yes — every offer at Sunrise Village is written subject to the buyer securing park approval from Sunrise Village management before the offer is finalized, which includes reviewing and signing the community\'s Rules & Regulations.'
+            'text': 'Yes. Every offer at Sunrise Village is written subject to the buyer securing park approval from Sunrise Village management before the offer is finalized, which includes reviewing and signing the community\'s Rules & Regulations.'
           }
         },
         {
@@ -99,7 +99,7 @@
           'name': 'Can I install solar panels at Sunrise Village?',
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': 'Yes — rooftop solar is permitted with written approval from Sunrise Village management and a licensed installer. Ground-mounted solar systems are not permitted.'
+            'text': 'Yes. Rooftop solar is permitted with written approval from Sunrise Village management and a licensed installer. Ground-mounted solar systems are not permitted.'
           }
         }
       ]

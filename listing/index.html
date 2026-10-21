@@ -194,7 +194,7 @@ function toggleMenu() {
 
   function render(l) {
     var photos = (l.Media || []).slice().sort(function(a,b){return(a.Order||0)-(b.Order||0);});
-    var unit   = l.UnitNumber ? 'Unit ' + l.UnitNumber + ' — ' : '';
+    var unit   = l.UnitNumber ? 'Unit ' + l.UnitNumber + ', ' : '';
     var addr   = unit + (l.StreetNumber||'') + ' ' + (l.StreetName||'') + ' ' + (l.StreetSuffix||'');
     var city   = [l.City, l.StateOrProvince, l.PostalCode].filter(Boolean).join(', ');
 
@@ -211,7 +211,7 @@ function toggleMenu() {
     if (l.LivingArea)             facts.push(['Size', Math.round(l.LivingArea).toLocaleString() + ' sq ft']);
     if (l.YearBuilt)              facts.push(['Year Built', l.YearBuilt]);
     if (l.Stories)                facts.push(['Stories', l.Stories]);
-    if (l.ParkingTotal)           facts.push(['Parking', l.ParkingTotal + (l.ParkingFeatures ? ' — ' + l.ParkingFeatures : '')]);
+    if (l.ParkingTotal)           facts.push(['Parking', l.ParkingTotal + (l.ParkingFeatures ? ', ' + l.ParkingFeatures : '')]);
     if (l.Basement)               facts.push(['Basement', l.Basement]);
     if (l.Heating)                facts.push(['Heating', l.Heating]);
     if (l.Cooling)                facts.push(['Cooling', l.Cooling]);
@@ -286,7 +286,7 @@ function toggleMenu() {
               '<div class="ld-form-success" id="ld-form-success" style="display:none;margin-bottom:12px;padding:12px;background:rgba(26,122,74,.12);border:1px solid rgba(26,122,74,.3);border-radius:6px;color:#1a7a4a;font-weight:700;font-size:13px;text-align:center">\u2713 Sent \u2014 we\'ll be in touch shortly.</div>' +
               '<form class="ld-contact-form" action="https://formspree.io/f/mvkojlee" method="POST">' +
               '<input type="hidden" name="_next" value="https://ownsunrisevillage.com/listing?id=' + encodeURIComponent(key) + '&sent=1">' +
-                '<input type="hidden" name="_subject" value="Listing Inquiry — ' + esc(addr.trim()) + '">' +
+                '<input type="hidden" name="_subject" value="Listing Inquiry: ' + esc(addr.trim()) + '">' +
                 '<input type="hidden" name="listing" value="' + esc(addr.trim()) + ' · MLS® ' + esc(l.ListingId||'') + '">' +
                 '<div class="form-group"><label>Name</label><input type="text" name="name" placeholder="Your name" required></div>' +
                 '<div class="form-group"><label>Email</label><input type="email" name="email" placeholder="you@email.com" required></div>' +
@@ -298,7 +298,7 @@ function toggleMenu() {
                 '<a href="tel:12508616002" class="ld-contact-link"><span>📞</span><span>250-861-6002</span></a>' +
                 '<a href="mailto:info@markjontz.com" class="ld-contact-link"><span>✉️</span><span>info@markjontz.com</span></a>' +
               '</div>' +
-              '<div class="ld-homesafe-callout">' +'<div class="ld-homesafe-title">Need to sell first?</div>' +'<p class="ld-homesafe-desc">Homesafe lets you buy your next home before your current one sells — one move, same day close.</p>' +'<a href="/homesafe" class="ld-homesafe-link">Learn about Homesafe →</a>' +'</div>' +
+              '<div class="ld-homesafe-callout">' +'<div class="ld-homesafe-title">Need to sell first?</div>' +'<p class="ld-homesafe-desc">Homesafe lets you buy your next home before your current one sells, with one move and a same-day close.</p>' +'<a href="/homesafe" class="ld-homesafe-link">Learn about Homesafe →</a>' +'</div>' +
               '<div class="ld-mls-note">' +
                 (l.ListOfficeName ? 'Listing courtesy of ' + esc(l.ListOfficeName) + '. ' : '') +
                 'MLS® data provided by CREA DDF®. The trademarks REALTOR®, MLS®, and REALTORS® are controlled by CREA.' +
@@ -356,7 +356,7 @@ function toggleMenu() {
         return;
       }
       var l = data.listing;
-      var titleAddr = (l.UnitNumber ? 'Unit ' + l.UnitNumber + ' — ' : '') + (l.StreetNumber||'') + ' ' + (l.StreetName||'') + ' ' + (l.StreetSuffix||'');
+      var titleAddr = (l.UnitNumber ? 'Unit ' + l.UnitNumber + ', ' : '') + (l.StreetNumber||'') + ' ' + (l.StreetName||'') + ' ' + (l.StreetSuffix||'');
       document.title = titleAddr.trim() + ' | OwnSunriseVillage';
       render(l);
     })

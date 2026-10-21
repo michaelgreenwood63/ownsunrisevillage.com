@@ -49,7 +49,7 @@
 
   function renderCard(l) {
     var photo     = mainPhotoUrl(l);
-    var unit      = l.UnitNumber ? 'Unit ' + l.UnitNumber + ' — ' : '';
+    var unit      = l.UnitNumber ? 'Unit ' + l.UnitNumber + ', ' : '';
     var addr      = unit + (l.StreetNumber || '') + ' ' + (l.StreetName || '') + ' ' + (l.StreetSuffix || '');
     var parts     = [];
     if (l.BedroomsTotal)         parts.push(l.BedroomsTotal + ' bed');
@@ -290,7 +290,7 @@
         var disc = document.getElementById('listings-disclaimer');
         if (disc) {
           disc.style.display = 'block';
-          disc.innerHTML = 'Not all listings appear here — participation in CREA\'s data sharing program varies by brokerage. ' +
+          disc.innerHTML = 'Not all listings appear here. Participation in CREA\'s data sharing program varies by brokerage. ' +
             'We also have access to <strong>off-market opportunities</strong> not yet on MLS®. ' +
             '<a href="/contact">Contact us for the full picture →</a>';
         }

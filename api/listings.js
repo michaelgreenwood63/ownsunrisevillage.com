@@ -1,4 +1,4 @@
-// Proxy to KelownaListings hub — no DDF credentials needed on this site
+// Proxy to KelownaListings hub (no DDF credentials needed on this site)
 module.exports = async (req, res) => {
   res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
   res.setHeader('Access-Control-Allow-Origin', '*');
