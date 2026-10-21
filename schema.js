@@ -19,7 +19,7 @@
         'url': BASE,
         'telephone': '+12508616002',
         'email': 'info@markjontz.com',
-        'description': 'Mark Jontz & Associates — the dedicated real estate resource for Sunrise Village, a 378-home 45+ land-lease community at 1255 and 1260 Raymer Avenue, Kelowna. 50+ transactions facilitated inside the community.',
+        'description': 'Mark Jontz & Associates — the dedicated real estate resource for Sunrise Village, a 45+ land-lease community of an estimated 350+ homes at 1255 and 1260 Raymer Avenue, Kelowna. 50+ transactions facilitated inside the community.',
         'areaServed': [
           { '@type': 'City', 'name': 'Kelowna', 'addressRegion': 'BC', 'addressCountry': 'CA' },
           { '@type': 'Place', 'name': 'Sunrise Village, Raymer Avenue, Kelowna', 'addressRegion': 'BC', 'addressCountry': 'CA' }
@@ -47,7 +47,7 @@
       '@type': 'WebSite',
       'url': BASE,
       'name': 'Own Sunrise Village',
-      'description': 'Sunrise Village Kelowna real estate — a 378-home, 45+ land-lease community on Raymer Avenue. Browse active listings with Mark Jontz & Associates.'
+      'description': 'Sunrise Village Kelowna real estate — a 45+ land-lease community of an estimated 350+ homes on Raymer Avenue. Browse active listings with Mark Jontz & Associates.'
     });
 
     inject({
@@ -59,7 +59,7 @@
           'name': 'What is Sunrise Village Kelowna?',
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': 'Sunrise Village is a 378-home, age 45-and-over land-lease community at 1255 and 1260 Raymer Avenue in Kelowna\'s Springfield/Spall area. It includes a mix of manufactured and built-on-site rancher-style homes, with an active clubhouse featuring an outdoor pool, hot tub, fitness room, library, and billiards room. Mark Jontz & Associates has facilitated 50+ transactions inside the community.'
+            'text': 'Sunrise Village is a 45-and-over land-lease community of an estimated 350+ homes at 1255 and 1260 Raymer Avenue in Kelowna\'s Springfield/Spall area. It includes a mix of manufactured and built-on-site rancher-style homes, with an active clubhouse featuring an outdoor pool, hot tub, fitness room, library, and billiards room. Mark Jontz & Associates has facilitated 50+ transactions inside the community.'
           }
         },
         {
