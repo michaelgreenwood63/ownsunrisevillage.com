@@ -97,6 +97,7 @@
 .ld-homesafe-link:hover{text-decoration:underline}
 </style>
 <script src="/schema.js" defer></script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
@@ -283,7 +284,7 @@ function toggleMenu() {
                 '<div class="ld-agent-avatar">MJ</div>' +
                 '<div><div class="ld-agent-name">Mark Jontz</div><div class="ld-agent-title">REALTOR® · Royal LePage Kelowna</div></div>' +
               '</div>' +
-              '<div class="ld-form-success" id="ld-form-success" style="display:none;margin-bottom:12px;padding:12px;background:rgba(26,122,74,.12);border:1px solid rgba(26,122,74,.3);border-radius:6px;color:#1a7a4a;font-weight:700;font-size:13px;text-align:center">\u2713 Sent \u2014 we\'ll be in touch shortly.</div>' +
+              '<div class="ld-form-success" id="ld-form-success" data-fs-success style="display:none;margin-bottom:12px;padding:12px;background:rgba(26,122,74,.12);border:1px solid rgba(26,122,74,.3);border-radius:6px;color:#1a7a4a;font-weight:700;font-size:13px;text-align:center">\u2713 Sent \u2014 we\'ll be in touch shortly.</div>' +
               '<form class="ld-contact-form" action="https://formspree.io/f/mvkojlee" method="POST">' +
               '<input type="hidden" name="_next" value="https://ownsunrisevillage.com/listing?id=' + encodeURIComponent(key) + '&sent=1">' +
                 '<input type="hidden" name="_subject" value="Listing Inquiry: ' + esc(addr.trim()) + '">' +
@@ -310,6 +311,8 @@ function toggleMenu() {
       '</div>';
 
     window._ldPhotos = photos;
+    window.formspree = window.formspree || function(){ (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '.ld-contact-form', formId: 'mvkojlee' });
     window._ldIdx    = 0;
     if (location.search.indexOf('sent=1') !== -1) {
       var successEl = document.getElementById('ld-form-success');
