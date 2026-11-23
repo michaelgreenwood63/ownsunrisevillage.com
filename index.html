@@ -22,6 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link rel="stylesheet" href="/style.css">
 <script type="application/ld+json">
 {
@@ -181,6 +182,60 @@
     </div>
   </div>
 </div>
+
+<!-- AREA MAP -->
+<div id="area-map-section" class="section">
+  <div class="section-inner">
+    <div class="section-label">The Neighbourhood</div>
+    <h2 class="section-title">See what's actually around Sunrise Village</h2>
+    <p class="section-sub">Springfield/Spall is one of Kelowna's more central neighbourhoods — here's what's realistically close by car.</p>
+    <div id="area-map" class="area-map"></div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function(){
+  var mapEl = document.getElementById('area-map');
+  if (!mapEl || typeof L === 'undefined') return;
+
+  // Geocoded via OpenStreetMap Nominatim (not surveyed exact-building points
+  // for the shopping centre/hospital/greenway/village — those resolve to the
+  // real site/address point OSM has on file). Sunrise Village itself geocoded
+  // to the 1255 Raymer Avenue address directly.
+  var places = [
+    {name:"Sunrise Village", desc:"1255 & 1260 Raymer Avenue", url:"/location", lat:49.8647958, lng:-119.4739317},
+    {name:"Orchard Park Mall", desc:"Everyday shopping & big-box retail", url:"/location", lat:49.8793625, lng:-119.4394760},
+    {name:"Kelowna General Hospital", desc:"Hospital & medical services", url:"/location", lat:49.8740530, lng:-119.4932694},
+    {name:"Mission Creek Greenway", desc:"Trail system — several homes back onto the creek", url:"/location", lat:49.8438836, lng:-119.4716461},
+    {name:"Pandosy Village", desc:"Shops, dining & the lake", url:"/location", lat:49.8620582, lng:-119.4876827}
+  ];
+
+  var map = L.map('area-map', {scrollWheelZoom:false});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  function pinIcon(isHome){
+    var color = isHome ? '#8C1A1C' : '#2C2C2C';
+    return L.divIcon({
+      className: '',
+      html: '<div style="background:'+color+';width:18px;height:18px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4)"></div>',
+      iconSize: [18,18],
+      iconAnchor: [9,18],
+      popupAnchor: [0,-18]
+    });
+  }
+
+  var bounds = [];
+  places.forEach(function(p, i){
+    var marker = L.marker([p.lat, p.lng], {icon: pinIcon(i === 0)}).addTo(map);
+    marker.bindPopup('<div style="font-family:\'Inter\',sans-serif"><strong style="font-size:14.5px">'+p.name+'</strong><br><span style="font-size:13px;color:#6B6B6B">'+p.desc+'</span></div>');
+    bounds.push([p.lat, p.lng]);
+  });
+  map.fitBounds(bounds, {padding:[36,36]});
+})();
+</script>
 
 <!-- LAND LEASE EXPLAINER -->
 <div id="land-lease" class="section section-alt">

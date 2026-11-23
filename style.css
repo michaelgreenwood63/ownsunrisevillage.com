@@ -469,6 +469,12 @@ a.stat:hover .stat-lbl{color:rgba(255,255,255,.4)}
 .compare-card li::before{content:'→';color:var(--red);font-weight:700;flex-shrink:0;margin-top:1px}
 @media(max-width:600px){.compare-grid{grid-template-columns:1fr}.article-body{padding:36px 20px 52px}.article-header{padding:40px 20px 36px}}
 
+/* ── AREA MAP ── */
+.area-map{height:440px;margin-top:36px;border-radius:var(--r);overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.08);border:1px solid var(--border);position:relative;z-index:0}
+.area-map .leaflet-popup-content-wrapper{border-radius:8px}
+.area-map .leaflet-popup-content{margin:12px 14px}
+@media(max-width:700px){.area-map{height:320px}}
+
 /* ── UTILITIES ── */
 .text-red{color:var(--red)}
 .text-charcoal{color:var(--charcoal)}

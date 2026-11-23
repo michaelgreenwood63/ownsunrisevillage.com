@@ -21,6 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link rel="stylesheet" href="/style.css">
 <script src="/schema.js" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -89,19 +90,50 @@
   <div class="section-inner">
     <div class="section-label">Map</div>
     <h2 class="section-title" style="margin-bottom:24px">Find it on the map</h2>
-    <div style="border-radius:12px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 24px rgba(0,0,0,.08)">
-      <iframe
-        title="Map of Sunrise Village, 1255 & 1260 Raymer Avenue, Kelowna, BC"
-        src="https://www.google.com/maps?q=1255+Raymer+Avenue,+Kelowna,+BC&output=embed"
-        width="100%"
-        height="420"
-        style="border:0;display:block"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
+    <div id="area-map" class="area-map"></div>
   </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function(){
+  var mapEl = document.getElementById('area-map');
+  if (!mapEl || typeof L === 'undefined') return;
+
+  // Geocoded via OpenStreetMap Nominatim — same points as the homepage map.
+  var places = [
+    {name:"Sunrise Village", desc:"1255 & 1260 Raymer Avenue", lat:49.8647958, lng:-119.4739317},
+    {name:"Orchard Park Mall", desc:"Everyday shopping & big-box retail", lat:49.8793625, lng:-119.4394760},
+    {name:"Kelowna General Hospital", desc:"Hospital & medical services", lat:49.8740530, lng:-119.4932694},
+    {name:"Mission Creek Greenway", desc:"Trail system — several homes back onto the creek", lat:49.8438836, lng:-119.4716461},
+    {name:"Pandosy Village", desc:"Shops, dining & the lake", lat:49.8620582, lng:-119.4876827}
+  ];
+
+  var map = L.map('area-map', {scrollWheelZoom:false});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  function pinIcon(isHome){
+    var color = isHome ? '#8C1A1C' : '#2C2C2C';
+    return L.divIcon({
+      className: '',
+      html: '<div style="background:'+color+';width:18px;height:18px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4)"></div>',
+      iconSize: [18,18],
+      iconAnchor: [9,18],
+      popupAnchor: [0,-18]
+    });
+  }
+
+  var bounds = [];
+  places.forEach(function(p, i){
+    var marker = L.marker([p.lat, p.lng], {icon: pinIcon(i === 0)}).addTo(map);
+    marker.bindPopup('<div style="font-family:\'Inter\',sans-serif"><strong style="font-size:14.5px">'+p.name+'</strong><br><span style="font-size:13px;color:#6B6B6B">'+p.desc+'</span></div>');
+    bounds.push([p.lat, p.lng]);
+  });
+  map.fitBounds(bounds, {padding:[36,36]});
+})();
+</script>
 
 <!-- GETTING AROUND -->
 <div class="section">
