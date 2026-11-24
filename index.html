@@ -21,7 +21,7 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link rel="stylesheet" href="/style.css">
 <script type="application/ld+json">
@@ -40,6 +40,7 @@
 <script src="/schema.js" defer></script>
 <script src="/listings.js" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/animations.js"></script>
 </head>
 <body>
 
@@ -110,7 +111,7 @@
 
 <!-- AGENT BAR MOBILE -->
 <div class="agent-bar agent-bar-mobile">
-  <div class="agent-bar-inner">
+  <div class="agent-bar-inner" data-reveal>
     <div style="display:flex;align-items:center;gap:16px">
       <img src="/logos/mj-associates-dark.svg" alt="Mark Jontz &amp; Associates" class="logo-img" style="height:32px">
       <div class="logo-divider-dark"></div>
@@ -126,7 +127,7 @@
 
 <!-- AGENT BAR DESKTOP -->
 <div class="agent-bar agent-bar-desktop">
-  <div class="agent-bar-inner">
+  <div class="agent-bar-inner" data-reveal>
     <img src="/logos/mj-associates-dark.svg" alt="Mark Jontz &amp; Associates" class="logo-img" style="height:44px">
     <div class="logo-divider-dark"></div>
     <img src="/logos/rl-kelowna-dark.svg" alt="Royal LePage Kelowna" class="logo-img" style="height:44px">
@@ -155,26 +156,26 @@
     <div class="section-label">About Sunrise Village</div>
     <h2 class="section-title">A large, established 45+ community</h2>
     <p class="section-sub">Sunrise Village is a 45-and-over community of an estimated 350+ homes at 1255 and 1260 Raymer Avenue, in Kelowna's Springfield/Spall area. The community is a mix of manufactured and built-on-site rancher-style homes, mostly 2-bedroom, 2-bathroom layouts, with individual floor plans (buyers and agents both refer to them by plan name, like the "D Plan") ranging from roughly 1,100 to over 1,500 square feet. It's centrally located, close to shopping, dining, medical services, and the Mission Creek Greenway. Several homes back directly onto the creek.</p>
-    <div class="stats-bar" style="margin:32px 0;border-radius:8px;overflow:hidden">
-      <div class="stat"><div class="stat-num">350+</div><div class="stat-lbl">Est. Homes in the Community</div></div>
-      <div class="stat"><div class="stat-num">50+</div><div class="stat-lbl">Transactions Facilitated Here</div></div>
-      <div class="stat"><div class="stat-num" id="stat-listing-count">—</div><div class="stat-lbl">Active Listings</div></div>
-      <div class="stat"><div class="stat-num">45+</div><div class="stat-lbl">Age-Restricted</div></div>
-      <div class="stat"><div class="stat-num">Land Lease</div><div class="stat-lbl">Ownership Structure</div></div>
-      <a href="/homesafe" class="stat" style="text-decoration:none;color:var(--white)"><div class="stat-num">Homesafe</div><div class="stat-lbl">We Created the Program</div></a>
+    <div class="stats-bar" data-reveal-group style="margin:32px 0;border-radius:8px;overflow:hidden">
+      <div class="stat" data-reveal><div class="stat-num">350+</div><div class="stat-lbl">Est. Homes in the Community</div></div>
+      <div class="stat" data-reveal><div class="stat-num">50+</div><div class="stat-lbl">Transactions Facilitated Here</div></div>
+      <div class="stat" data-reveal><div class="stat-num" id="stat-listing-count">—</div><div class="stat-lbl">Active Listings</div></div>
+      <div class="stat" data-reveal><div class="stat-num">45+</div><div class="stat-lbl">Age-Restricted</div></div>
+      <div class="stat" data-reveal><div class="stat-num">Land Lease</div><div class="stat-lbl">Ownership Structure</div></div>
+      <a href="/homesafe" class="stat" data-reveal style="text-decoration:none;color:var(--white)"><div class="stat-num">Homesafe</div><div class="stat-lbl">We Created the Program</div></a>
     </div>
-    <div class="why-grid" style="margin-top:12px">
-      <div class="why-card">
+    <div class="why-grid" data-reveal-group style="margin-top:12px">
+      <div class="why-card" data-reveal>
         <div class="why-icon">🏡</div>
         <div class="why-title">Estimated 350+ homes, real variety</div>
         <p class="why-desc">A mix of manufactured and built-on-site homes across multiple floor plans means this isn't a cookie-cutter park. Layouts, lot position, and updates vary meaningfully from unit to unit.</p>
       </div>
-      <div class="why-card">
+      <div class="why-card" data-reveal>
         <div class="why-icon">🏊</div>
         <div class="why-title">A genuinely active clubhouse</div>
         <p class="why-desc">With an outdoor pool, hot tub, fitness room, library, and billiards room, residents consistently describe Sunrise Village as a real community, not just a place to park a home.</p>
       </div>
-      <div class="why-card">
+      <div class="why-card" data-reveal>
         <div class="why-icon">📍</div>
         <div class="why-title">Central Springfield/Spall location</div>
         <p class="why-desc">Close to everyday shopping, medical services, and the Mission Creek Greenway, with several homes in the community backing directly onto the creek for extra privacy.</p>
@@ -243,23 +244,23 @@
     <div class="section-label">Ownership Structure</div>
     <h2 class="section-title">What "land lease" actually means here</h2>
     <p class="section-sub">This is the single most important thing to understand before buying at Sunrise Village, and it's not complicated once it's explained clearly.</p>
-    <div class="why-grid" style="margin-top:36px">
-      <div class="why-card">
+    <div class="why-grid" data-reveal-group style="margin-top:36px">
+      <div class="why-card" data-reveal>
         <div class="why-icon">🔑</div>
         <div class="why-title">You own the home, not the land</div>
         <p class="why-desc">When you buy at Sunrise Village, you own your home outright, but you lease the land it sits on, under a lease governed by BC's Manufactured Home Park Tenancy Act. The land is 100% privately owned by Sunrise Village's operator. There's no strata corporation and no Form B involved in a purchase, since you're buying the home only, not any share of the land.</p>
       </div>
-      <div class="why-card">
+      <div class="why-card" data-reveal>
         <div class="why-icon">💰</div>
         <div class="why-title">One monthly lease payment</div>
         <p class="why-desc">Your recurring community charge is the monthly land lease payment (often called pad rent), paid directly to Sunrise Village's operator. There's no separate strata or HOA fee stacked on top. We've seen figures in the roughly $600/month range on recent listings, though the exact amount depends on the specific lease and unit. We'll get you the real number for any home you're considering.</p>
       </div>
-      <div class="why-card">
+      <div class="why-card" data-reveal>
         <div class="why-icon">📅</div>
         <div class="why-title">Leases run for defined terms</div>
         <p class="why-desc">Land leases here run on multi-year terms, not month-to-month. Knowing where a specific home's lease sits in its term is a genuinely important part of evaluating the purchase, so we pull this before you make an offer, not after.</p>
       </div>
-      <div class="why-card">
+      <div class="why-card" data-reveal>
         <div class="why-icon">✅</div>
         <div class="why-title">Why buyers choose it anyway</div>
         <p class="why-desc">Land-lease homes typically cost meaningfully less to buy than fee-simple equivalents nearby, a real, legitimate reason this community draws buyers who want 45+ community living without the price tag of owning the land outright.</p>
@@ -275,23 +276,23 @@
     <div class="section-label">Community Amenities</div>
     <h2 class="section-title">The clubhouse is the heart of it</h2>
     <p class="section-sub">Residents consistently point to the clubhouse and the community it creates as a genuine reason they chose Sunrise Village over other 45+ options.</p>
-    <div class="why-grid" style="margin-top:36px">
-      <div class="why-card">
+    <div class="why-grid" data-reveal-group style="margin-top:36px">
+      <div class="why-card" data-reveal>
         <div class="why-icon">🏊</div>
         <div class="why-title">Outdoor Pool &amp; Hot Tub</div>
         <p class="why-desc">A heated outdoor pool and hot tub, open through the warmer months, is a consistent draw mentioned across current listings.</p>
       </div>
-      <div class="why-card">
+      <div class="why-card" data-reveal>
         <div class="why-icon">🎱</div>
         <div class="why-title">Billiards Room &amp; Library</div>
         <p class="why-desc">Indoor social space for residents, with billiards, a library, and common areas with a kitchen for gatherings.</p>
       </div>
-      <div class="why-card">
+      <div class="why-card" data-reveal>
         <div class="why-icon">💪</div>
         <div class="why-title">Fitness Room</div>
         <p class="why-desc">On-site fitness facilities, part of the community centre alongside the pool and social spaces.</p>
       </div>
-      <div class="why-card">
+      <div class="why-card" data-reveal>
         <div class="why-icon">🚗</div>
         <div class="why-title">Garage &amp; RV Storage</div>
         <p class="why-desc">Many homes include a double car garage; additional parking and RV storage are available in the community.</p>
@@ -468,50 +469,50 @@
   <div class="section-inner" style="max-width:760px">
     <div class="section-label">Common Questions</div>
     <h2 class="section-title" style="margin-bottom:32px">What buyers ask us about Sunrise Village.</h2>
-    <div class="faq-list">
-      <div class="faq-item">
+    <div class="faq-list" data-reveal-group>
+      <div class="faq-item" data-reveal>
         <button class="faq-q" onclick="toggleFAQ(this)">
           Do I need to be 45 to buy here?
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">Yes. Sunrise Village enforces a strict minimum age of 45, with no exceptions, for anyone residing in the home. Because Sunrise Village is a private leasehold community rather than a strata, it isn't affected by the enforceability questions that have come up around age restrictions at some strata-titled 55+ buildings. The age requirement here is confirmed at the time of purchase and it's strictly enforced.</div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" data-reveal>
         <button class="faq-q" onclick="toggleFAQ(this)">
           Do I need approval to buy at Sunrise Village?
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">Yes. Every offer at Sunrise Village is written subject to the buyer securing park approval before it can be finalized. That means meeting with Sunrise Village's on-site management to review and sign the community's Rules &amp; Regulations prior to subject removal. It's a standard part of the process and we build it into every offer we write here.</div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" data-reveal>
         <button class="faq-q" onclick="toggleFAQ(this)">
           Can I get a mortgage on a land-lease home?
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">Yes, though not every lender treats land-lease properties the same way as fee-simple homes. Some require a larger down payment or have specific requirements around the remaining lease term. We can point you toward lenders who work with Sunrise Village regularly.</div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" data-reveal>
         <button class="faq-q" onclick="toggleFAQ(this)">
           What happens when the land lease ends?
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">This depends on the specific lease terms attached to each home, which is exactly why we pull the actual lease document before you make an offer rather than relying on general assumptions. We'll make sure you understand this fully before you commit.</div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" data-reveal>
         <button class="faq-q" onclick="toggleFAQ(this)">
           Is this the same as a mobile home park?
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">Not quite. Sunrise Village includes manufactured, modular, and stick-built homes across its phases, and the land is 100% privately owned and run directly by Sunrise Village's management (there's no strata corporation or HOA). The community's Rules &amp; Regulations are strictly enforced and cover everything from pets to renovations to parking. The land-lease piece is what it shares with a typical mobile home park model.</div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" data-reveal>
         <button class="faq-q" onclick="toggleFAQ(this)">
           Can I install solar panels?
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">Yes. Rooftop solar is allowed with written approval from management, installed by a licensed professional. Ground-mounted systems aren't permitted. It's a real option worth asking us about if long-term energy costs are part of your decision.</div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" data-reveal>
         <button class="faq-q" onclick="toggleFAQ(this)">
           Can I have a BBQ or fire pit?
           <span class="faq-icon">+</span>
@@ -526,7 +527,7 @@
 <div class="lead-section" id="seller">
   <div class="lead-inner">
 
-    <div class="lead-box">
+    <div class="lead-box" data-reveal>
       <div class="lead-eyebrow">Free &amp; No Obligation</div>
       <h2 class="lead-title">What's your Sunrise Village home worth?</h2>
       <p class="lead-sub">We've facilitated 50+ transactions inside Sunrise Village and track this community closely, including the land-lease details generic valuations miss. Get a real number from an agent who knows Sunrise Village.</p>
@@ -562,7 +563,7 @@
       </form>
     </div>
 
-    <div class="lead-box">
+    <div class="lead-box" data-reveal>
       <div class="lead-eyebrow">Thinking About Buying?</div>
       <h2 class="lead-title">Find your place at Sunrise Village</h2>
       <p class="lead-sub">Whether you're a first-time land-lease buyer or a long-time 45+ community fan, with 50+ transactions facilitated here, we'll walk you through exactly how it works and find the right unit.</p>

@@ -20,10 +20,11 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <script src="/schema.js" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/animations.js"></script>
 </head>
 <body>
 
@@ -134,18 +135,18 @@
   <div class="section-inner">
     <div class="section-label">Who It's For</div>
     <h2 class="section-title">This program is for you if…</h2>
-    <div class="why-grid" style="margin-top:28px">
-      <div class="why-card">
+    <div class="why-grid" data-reveal-group style="margin-top:28px">
+      <div class="why-card" data-reveal>
         <div class="why-icon">🏡</div>
         <div class="why-title">You're Upsizing</div>
         <p class="why-desc">Your family has outgrown your current home and you need more space, but you can't afford to carry two mortgages while waiting for the sale to close.</p>
       </div>
-      <div class="why-card">
+      <div class="why-card" data-reveal>
         <div class="why-icon">📦</div>
         <div class="why-title">You're Downsizing</div>
         <p class="why-desc">You're ready to simplify, but you don't want to move twice or live in temporary housing while the search drags on. One move, done right.</p>
       </div>
-      <div class="why-card">
+      <div class="why-card" data-reveal>
         <div class="why-icon">🔑</div>
         <div class="why-title">You Need Certainty</div>
         <p class="why-desc">You've been burned by deals that fell through because of timing. The Homesafe Program structures both sides to close together, with no domino-effect risk.</p>
